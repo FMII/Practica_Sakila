@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { ActorComponent } from './actor/actor.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, SidebarComponent, ActorComponent, NavbarComponent, NgxPaginationModule],
+  imports: [RouterOutlet, SidebarComponent, NavbarComponent, NgxPaginationModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
