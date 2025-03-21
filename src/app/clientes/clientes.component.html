@@ -1,1 +1,94 @@
-<p>clientes works!</p>
+<div class="container-fluid actor-table-container">
+    <h2 class="mt-3 mb-4">Lista de Clientes</h2>
+  
+    <!-- Botón para mostrar el formulario -->
+    <div class="mb-3" *ngIf="!formVisible">
+      <button class="btn btn-success" (click)="showCreateForm()">➕ Nuevo Cliente</button>
+    </div>
+  
+    <!-- Formulario de crear/editar -->
+    <div *ngIf="formVisible" class="mb-4 card p-3 shadow-sm">
+      <h5>{{ isEditing ? 'Editar Cliente' : 'Nuevo Cliente' }}</h5>
+      <form (ngSubmit)="saveCliente()">
+        <div class="row">
+          <div class="mb-3 col-md-6">
+            <label>Nombre</label>
+            <input [(ngModel)]="clienteForm.first_name" name="first_name" class="form-control" required />
+          </div>
+          <div class="mb-3 col-md-6">
+            <label>Apellido</label>
+            <input [(ngModel)]="clienteForm.last_name" name="last_name" class="form-control" required />
+          </div>
+          <div class="mb-3 col-md-6">
+            <label>Email</label>
+            <input [(ngModel)]="clienteForm.email" name="email" type="email" class="form-control" required />
+          </div>
+          <div class="mb-3 col-md-3">
+            <label>ID Dirección</label>
+            <input [(ngModel)]="clienteForm.address_id" name="address_id" type="number" class="form-control" required />
+          </div>
+          <div class="mb-3 col-md-3">
+            <label>ID Tienda</label>
+            <input [(ngModel)]="clienteForm.store_id" name="store_id" type="number" class="form-control" required />
+          </div>
+          <div class="mb-3 col-md-3 d-flex align-items-end">
+            <div class="form-check">
+              <input [(ngModel)]="clienteForm.active" name="active" type="checkbox" class="form-check-input" id="activo" />
+              <label class="form-check-label" for="activo">Activo</label>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex gap-2">
+          <button type="submit" class="btn btn-primary">
+            {{ isEditing ? 'Actualizar' : 'Crear' }}
+          </button>
+          <button type="button" class="btn btn-secondary" (click)="cancelForm()">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  
+    <!-- Tabla de clientes (oculta cuando el formulario está activo) -->
+    <div *ngIf="!formVisible" class="table-responsive actor-table-scroll shadow-sm rounded">
+      <table class="table table-hover table-bordered">
+        <thead class="table-primary text-center sticky-header">
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email</th>
+            <th>Dirección</th>
+            <th>Tienda</th>
+            <th>Activo</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cliente of clientes | paginate: { itemsPerPage: itemsPerPage, currentPage: page }">
+            <td class="text-center">{{ cliente.customer_id }}</td>
+            <td>{{ cliente.first_name }}</td>
+            <td>{{ cliente.last_name }}</td>
+            <td>{{ cliente.email }}</td>
+            <td class="text-center">{{ cliente.address_id }}</td>
+            <td class="text-center">{{ cliente.store_id }}</td>
+            <td class="text-center">
+              <span [class.text-success]="cliente.active" [class.text-danger]="!cliente.active">
+                {{ cliente.active ? 'Sí' : 'No' }}
+              </span>
+            </td>
+            <td class="text-center">
+              <button class="btn btn-sm btn-warning me-2" (click)="showEditForm(cliente.customer_id)">✏️</button>
+              <button class="btn btn-sm btn-danger" (click)="deleteCliente(cliente.customer_id)">🗑️</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- Paginación -->
+    <pagination-controls
+      *ngIf="!formVisible"
+      (pageChange)="page = $event"
+      class="d-flex justify-content-center mt-3">
+    </pagination-controls>
+  </div>
+  

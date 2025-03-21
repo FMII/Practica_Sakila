@@ -1,14 +1,33 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { PeliculaCategoria } from '../../interfaces/pelicula-categoria';
+import { PeliculaCategoria, PeliculaCategoriaResponse } from '../../interfaces/pelicula-categoria';
+
 @Injectable({
   providedIn: 'root'
 })
 export class PeliculaCategoriaService {
+  private apiUrl = 'http://209.38.68.250/film_category';
 
-  constructor(private http: HttpClient) { }
-  getFilm_Categorie(): Observable<PeliculaCategoria[]> {
-      return this.http.get<PeliculaCategoria[]>('http://209.38.68.250/film_category');
-    }
+  constructor(private http: HttpClient) {}
+
+  getAll(): Observable<PeliculaCategoriaResponse> {
+    return this.http.get<PeliculaCategoriaResponse>(this.apiUrl);
+  }
+
+  getById(film_id: number, category_id: number): Observable<PeliculaCategoria> {
+    return this.http.get<PeliculaCategoria>(`${this.apiUrl}/${film_id}/${category_id}`);
+  }
+
+  create(data: Partial<PeliculaCategoria>): Observable<PeliculaCategoria> {
+    return this.http.post<PeliculaCategoria>(this.apiUrl, data);
+  }
+
+  update(film_id: number, category_id: number, data: Partial<PeliculaCategoria>): Observable<PeliculaCategoria> {
+    return this.http.put<PeliculaCategoria>(`${this.apiUrl}/${film_id}/${category_id}`, data);
+  }
+
+  delete(film_id: number, category_id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${film_id}/${category_id}`);
+  }
 }
