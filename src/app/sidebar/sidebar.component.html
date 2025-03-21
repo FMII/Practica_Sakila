@@ -7,154 +7,88 @@
     <div class="sidebar">
       <!-- Sidebar Menu -->
       <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Catálogos
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
+        <ul class="nav nav-pills nav-sidebar flex-column" role="menu">
+            <!-- Actores -->
+            <li class="nav-item">
                 <a routerLink="crud/actors" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Actores</p>
+                    <i class="nav-icon fas fa-user"></i>
+                    <p>Actores</p>
                 </a>
-              </li>
-              <li class="nav-item">
-                <a routerLink="crud/films" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Filmes</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a routerLink="crud/categories" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Categorías</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a routerLink="crud/languages" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Idiomas</p>
-                </a>
-              </li>
-            </ul>
-          </li>          
-          
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Clientes
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
+            </li>
+    
+            <!-- Clientes -->
+            <li class="nav-item">
                 <a routerLink="crud/customers" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>
-                    Clientes
-                  </p>
+                    <i class="nav-icon fas fa-users"></i>
+                    <p>Clientes</p>
                 </a>
-              </li>
-              <li class="nav-item">
-                <a routerLink="crud/addresses" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>
-                    Direcciones
-                  </p>
+            </li>
+    
+            <!-- Películas -->
+            <li class="nav-item">
+                <a routerLink="crud/films" class="nav-link">
+                    <i class="nav-icon fas fa-film"></i>
+                    <p>Películas</p>
                 </a>
-              </li>
-              <li class="nav-item">
-                <a routerLink="crud/cities" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>
-                    Ciudades
-                  </p>
+            </li>
+    
+            <!-- Película-Actor -->
+            <li class="nav-item">
+                <a routerLink="crud/film_actor" class="nav-link">
+                    <i class="nav-icon fas fa-user-tag"></i>
+                    <p>Película-Actor</p>
                 </a>
-              </li>
-              <li class="nav-item">
-                <a routerLink="crud/countries" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>
-                    Países
-                  </p>
+            </li>
+    
+            <!-- Película-Categoría -->
+            <li class="nav-item">
+                <a routerLink="crud/film_category" class="nav-link">
+                    <i class="nav-icon fas fa-list"></i>
+                    <p>Película-Categoría</p>
                 </a>
-              </li>
-            </ul>
-          </li>
-
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Inventario
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
+            </li>
+    
+            <!-- Película-Texto -->
+            <li class="nav-item">
+                <a routerLink="crud/film_text" class="nav-link">
+                    <i class="nav-icon fas fa-file-alt"></i>
+                    <p>Película-Texto</p>
+                </a>
+            </li>
+    
+            <!-- Inventario -->
+            <li class="nav-item">
                 <a routerLink="crud/inventories" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>
-                    Inventario
-                  </p>
+                    <i class="nav-icon fas fa-box"></i>
+                    <p>Inventario</p>
                 </a>
-              </li>
-              <li class="nav-item">
-                <a routerLink="crud/stores" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>
-                    Tiendas
-                  </p>
-                </a>
-              </li>
-            </ul>
-          </li>
-
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Rentas
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a routerLink="crud/rentals" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>
-                    Rentas
-                  </p>
-                </a>
-              </li>
-              <li class="nav-item">
+            </li>
+    
+            <!-- Pagos -->
+            <li class="nav-item">
                 <a routerLink="crud/payments" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>
-                    Pagos
-                  </p>
+                    <i class="nav-icon fas fa-dollar-sign"></i>
+                    <p>Pagos</p>
                 </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a routerLink="crud/staff" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Staff
-              </p>
-            </a>
-          </li>
+            </li>
+    
+            <!-- Renta -->
+            <li class="nav-item">
+                <a routerLink="crud/rentals" class="nav-link">
+                    <i class="nav-icon fas fa-receipt"></i>
+                    <p>Renta</p>
+                </a>
+            </li>
+    
+            <!-- Personal -->
+            <li class="nav-item">
+                <a routerLink="crud/staff" class="nav-link">
+                    <i class="nav-icon fas fa-user-tie"></i>
+                    <p>Personal</p>
+                </a>
+            </li>
         </ul>
-      </nav>
+    </nav>    
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->

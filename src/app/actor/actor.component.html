@@ -1,3 +1,26 @@
-<div class="container">
-    <p>actor works!</p>
+<div class="container-fluid" style="height: calc(100vh - 4rem); display: flex; flex-direction: column;">
+    <div class="table-responsive flex-grow-1 shadow-sm rounded" style="overflow-y: auto;">
+        <table class="table table-hover table-bordered">
+            <thead class="table-primary text-center">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let actor of actors | paginate: { itemsPerPage: itemsPerPage, currentPage: page }">
+                    <td class="text-center">{{ actor.actor_id }}</td>
+                    <td>{{ actor.first_name }}</td>
+                    <td>{{ actor.last_name }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Paginación -->
+    <pagination-controls 
+        (pageChange)="page = $event" 
+        class="d-flex justify-content-center mt-3">
+    </pagination-controls>
 </div>

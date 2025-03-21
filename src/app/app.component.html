@@ -2,12 +2,12 @@
   <!-- Navbar fijo en la parte superior -->
   <app-navbar style="position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;" />
 
-  <div style="display: flex;"> <!-- Ajustamos el margin-top para que el contenido no se superponga al navbar -->
+  <div style="display: flex; flex: 1;"> 
     <!-- Sidebar fijo a la izquierda -->
     <app-sidebar style="position: fixed; height: 100vh; width: 16rem; top: 0; left: 0;" />
 
-    <!-- Contenedor del contenido con margen izquierdo para evitar que se superponga al sidebar -->
-    <div style="margin-left: 16rem; margin-top: 4rem; padding: 1rem; overflow-y: auto; height: calc(100vh - 4rem);">
+    <!-- Contenedor del contenido ajustado -->
+    <div style="margin-left: 16rem; padding: 1rem; flex: 1; overflow-y: auto; margin-top: 4rem;">
       <router-outlet />
       <app-actor></app-actor>
     </div>
