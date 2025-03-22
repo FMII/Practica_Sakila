@@ -48,8 +48,8 @@ export class InventarioComponent implements OnInit {
     this.currentId = id;
     this.service.getById(id).subscribe(inv => {
       this.form = {
-        film_id: inv.film_id,
-        store_id: inv.store_id
+        film_id: inv.data.film_id,
+        store_id: inv.data.store_id
       };
       this.formVisible = true;
       this.isEditing = true;

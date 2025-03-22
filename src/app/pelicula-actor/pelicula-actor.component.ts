@@ -4,6 +4,10 @@ import { PeliculaActorService } from '../services/pelicula_actor/pelicula-actor.
 import { NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ActorService } from '../services/actor/actor.service';
+import { Actor } from '../interfaces/actor';
+import { PeliculaService } from '../services/pelicula/pelicula.service';
+import { Pelicula } from '../interfaces/pelicula';
 
 @Component({
   selector: 'app-pelicula-actor',
@@ -14,6 +18,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
 })
 export class PeliculaActorComponent implements OnInit {
   relaciones: PeliculaActor[] = [];
+  actores: Actor[] = [];
+peliculas: Pelicula[] = [];
+
   page = 1;
   itemsPerPage = 10;
 
@@ -27,11 +34,31 @@ export class PeliculaActorComponent implements OnInit {
 
   selectedIds = { actor_id: 0, film_id: 0 };
 
-  constructor(private service: PeliculaActorService) {}
+  constructor(
+    private service: PeliculaActorService,
+    private actorService: ActorService,
+    private peliculaService: PeliculaService
+  ) {}
+  
 
   ngOnInit(): void {
     this.loadRelaciones();
+    this.loadActores();
+    this.loadPeliculas();
   }
+  
+  loadActores(): void {
+    this.actorService.getActors().subscribe(res => {
+      this.actores = res.data;
+    });
+  }
+  
+  loadPeliculas(): void {
+    this.peliculaService.getFilms().subscribe(res => {
+      this.peliculas = res.data;
+    });
+  }
+  
 
   loadRelaciones(): void {
     this.service.getAll().subscribe(res => {

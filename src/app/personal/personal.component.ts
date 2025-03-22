@@ -63,14 +63,14 @@ export class PersonalComponent implements OnInit {
     this.currentId = id;
     this.service.getById(id).subscribe(p => {
       this.form = {
-        first_name: p.first_name,
-        last_name: p.last_name,
-        email: p.email,
-        username: p.username,
-        store_id: p.store_id,
-        address_id: p.address_id,
-        active: p.active,
-        password: p.password
+        first_name: p.data.first_name,
+        last_name: p.data.last_name,
+        email: p.data.email,
+        username: p.data.username,
+        store_id: p.data.store_id,
+        address_id: p.data.address_id,
+        active: p.data.active,
+        password: p.data.password
       };
       this.formVisible = true;
       this.isEditing = true;

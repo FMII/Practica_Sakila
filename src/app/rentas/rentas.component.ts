@@ -56,7 +56,7 @@ export class RentasComponent implements OnInit {
   showEditForm(id: number): void {
     this.currentId = id;
     this.service.getById(id).subscribe(renta => {
-      this.form = { ...renta };
+      this.form = { ...renta.data };
       this.formVisible = true;
       this.isEditing = true;
     });

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Personal, PersonalResponse } from '../../interfaces/personal';
-
+import { Global } from '../../interfaces/global';
 @Injectable({
   providedIn: 'root'
 })
@@ -16,8 +16,8 @@ export class PersonalService {
     return this.http.get<PersonalResponse>(this.apiUrl);
   }
 
-  getById(id: number): Observable<Personal> {
-    return this.http.get<Personal>(`${this.apiUrl}/${id}`);
+  getById(id: number): Observable<Global> {
+    return this.http.get<Global>(`${this.apiUrl}/${id}`);
   }
 
   create(data: Partial<Personal>): Observable<Personal> {

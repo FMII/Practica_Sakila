@@ -5,6 +5,11 @@ import { NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 
+import { Pelicula } from '../interfaces/pelicula';
+import { Category } from '../interfaces/category';
+import { PeliculaService } from '../services/pelicula/pelicula.service';
+import { CategoryService } from '../services/category/category.service';
+
 @Component({
   selector: 'app-pelicula-categoria',
   standalone: true,
@@ -14,6 +19,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 })
 export class PeliculaCategoriaComponent implements OnInit {
   relaciones: PeliculaCategoria[] = [];
+  peliculas: Pelicula[] = [];
+  categorias: Category[] = [];
   page = 1;
   itemsPerPage = 10;
 
@@ -27,10 +34,28 @@ export class PeliculaCategoriaComponent implements OnInit {
 
   selectedIds = { film_id: 0, category_id: 0 };
 
-  constructor(private service: PeliculaCategoriaService) {}
+  constructor(
+    private service: PeliculaCategoriaService,
+    private peliculaService: PeliculaService,
+    private categoryService: CategoryService
+  ) {}
 
   ngOnInit(): void {
     this.loadRelaciones();
+    this.loadPeliculas();     // 👈 cargar películas
+    this.loadCategorias();    // 👈 cargar categorías
+  }
+
+  loadPeliculas(): void {
+    this.peliculaService.getFilms().subscribe(res => {
+      this.peliculas = res.data;
+    });
+  }
+
+  loadCategorias(): void {
+    this.categoryService.getCategories().subscribe(res => {
+      this.categorias = res.data;
+    });
   }
 
   loadRelaciones(): void {

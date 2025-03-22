@@ -9,6 +9,14 @@
       <h5>{{ isEditing ? 'Editar Película' : 'Nueva Película' }}</h5>
       <form (ngSubmit)="save()">
         <div class="mb-3">
+          <label>Película</label>
+          <select [(ngModel)]="form.film_id" name="film_id" class="form-select" required>
+            <option *ngFor="let p of peliculas" [value]="p.film_id">
+              {{ p.title }}
+            </option>
+          </select>
+        </div>
+        <div class="mb-3">
           <label>Título</label>
           <input [(ngModel)]="form.title" name="title" class="form-control" required />
         </div>

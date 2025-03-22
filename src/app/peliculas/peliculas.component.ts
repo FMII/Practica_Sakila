@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Pelicula } from '../interfaces/pelicula';
 import { PeliculaService } from '../services/pelicula/pelicula.service';
+import { LenguajeService } from '../services/lenguaje/lenguaje.service';
+import { Lenguaje } from '../interfaces/lenguaje';
 
 @Component({
   selector: 'app-peliculas',
@@ -14,6 +16,8 @@ import { PeliculaService } from '../services/pelicula/pelicula.service';
 })
 export class PeliculasComponent implements OnInit {
   peliculas: Pelicula[] = [];
+  languages: Lenguaje[] = [];
+
   page = 1;
   itemsPerPage = 10;
 
@@ -33,11 +37,23 @@ export class PeliculasComponent implements OnInit {
     special_features: '',
   };
 
-  constructor(private peliculaService: PeliculaService) {}
+  constructor(
+    private peliculaService: PeliculaService,
+    private lenguajeService: LenguajeService
+  ) {}
+  
 
   ngOnInit(): void {
     this.getPeliculas();
+    this.getLanguages(); // 👈 Aquí
   }
+  
+  getLanguages(): void {
+    this.lenguajeService.getLanguages().subscribe(res => {
+      this.languages = res.data;
+    });
+  }
+  
 
   getPeliculas(): void {
     this.peliculaService.getFilms().subscribe(res => {
@@ -64,7 +80,7 @@ export class PeliculasComponent implements OnInit {
 
   showEditForm(id: number): void {
     this.peliculaService.getFilmById(id).subscribe(pelicula => {
-      this.peliculaForm = { ...pelicula };
+      this.peliculaForm = { ...pelicula.data };
       this.formVisible = true;
       this.isEditing = true;
     });

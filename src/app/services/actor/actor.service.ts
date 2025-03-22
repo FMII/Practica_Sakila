@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Actor, ActorResponse } from '../../interfaces/actor';
-
+import { Global } from '../../interfaces/global';
 @Injectable({
   providedIn: 'root'
 })
@@ -18,8 +18,8 @@ export class ActorService {
   }
 
   // GET: Obtener un actor por ID
-  getActorById(id: number): Observable<Actor> {
-    return this.http.get<Actor>(`${this.apiUrl}/${id}`);
+  getActorById(id: number): Observable<Global> {
+    return this.http.get<Global>(`${this.apiUrl}/${id}`);
   }
 
   // POST: Crear un nuevo actor

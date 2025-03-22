@@ -52,7 +52,7 @@ export class ActorComponent implements OnInit {
   // Mostrar formulario para editar
   showEditForm(id: number): void {
     this.actorService.getActorById(id).subscribe((actor) => {
-      this.actorForm = { ...actor };
+      this.actorForm = { ...actor.data };
       this.formVisible = true;
       this.isEditing = true;
     });

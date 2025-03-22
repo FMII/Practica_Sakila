@@ -9,14 +9,26 @@
       <h5>{{ isEditing ? 'Editar Relación' : 'Nueva Relación' }}</h5>
       <form (ngSubmit)="save()">
         <div class="row">
-          <div class="mb-3 col-md-6">
-            <label>ID Actor</label>
-            <input [(ngModel)]="form.actor_id" name="actor_id" type="number" class="form-control" required />
-          </div>
-          <div class="mb-3 col-md-6">
-            <label>ID Película</label>
-            <input [(ngModel)]="form.film_id" name="film_id" type="number" class="form-control" required />
-          </div>
+         <!-- Selector de Actor -->
+<div class="mb-3 col-md-6">
+  <label>Actor</label>
+  <select [(ngModel)]="form.actor_id" name="actor_id" class="form-select" required>
+    <option *ngFor="let actor of actores" [value]="actor.actor_id">
+      {{ actor.first_name }} {{ actor.last_name }}
+    </option>
+  </select>
+</div>
+
+<!-- Selector de Película -->
+<div class="mb-3 col-md-6">
+  <label>Película</label>
+  <select [(ngModel)]="form.film_id" name="film_id" class="form-select" required>
+    <option *ngFor="let peli of peliculas" [value]="peli.film_id">
+      {{ peli.title }}
+    </option>
+  </select>
+</div>
+
         </div>
         <div class="d-flex gap-2">
           <button type="submit" class="btn btn-primary">{{ isEditing ? 'Actualizar' : 'Crear' }}</button>

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Pelicula, PeliculaResponse } from '../../interfaces/pelicula';
-
+import { Global } from '../../interfaces/global';
 @Injectable({
   providedIn: 'root'
 })
@@ -15,8 +15,8 @@ export class PeliculaService {
     return this.http.get<PeliculaResponse>(this.apiUrl);
   }
 
-  getFilmById(id: number): Observable<Pelicula> {
-    return this.http.get<Pelicula>(`${this.apiUrl}/${id}`);
+  getFilmById(id: number): Observable<Global> {
+    return this.http.get<Global>(`${this.apiUrl}/${id}`);
   }
 
   createFilm(film: Partial<Pelicula>): Observable<Pelicula> {

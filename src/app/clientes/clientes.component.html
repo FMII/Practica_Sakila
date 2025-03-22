@@ -23,14 +23,23 @@
             <label>Email</label>
             <input [(ngModel)]="clienteForm.email" name="email" type="email" class="form-control" required />
           </div>
-          <div class="mb-3 col-md-3">
-            <label>ID Dirección</label>
-            <input [(ngModel)]="clienteForm.address_id" name="address_id" type="number" class="form-control" required />
+          <div class="mb-3 col-md-6">
+            <label>Dirección</label>
+            <select [(ngModel)]="clienteForm.address_id" name="address_id" class="form-select" required>
+              <option *ngFor="let dir of direcciones" [value]="dir.address_id">
+                {{ dir.address }} - {{ dir.district }}
+              </option>
+            </select>
           </div>
-          <div class="mb-3 col-md-3">
-            <label>ID Tienda</label>
-            <input [(ngModel)]="clienteForm.store_id" name="store_id" type="number" class="form-control" required />
+          <div class="mb-3 col-md-6">
+            <label>Tienda</label>
+            <select [(ngModel)]="clienteForm.store_id" name="store_id" class="form-select" required>
+              <option *ngFor="let tienda of tiendas" [value]="tienda.store_id">
+                Tienda #{{ tienda.store_id }}
+              </option>
+            </select>
           </div>
+          
           <div class="mb-3 col-md-3 d-flex align-items-end">
             <div class="form-check">
               <input [(ngModel)]="clienteForm.active" name="active" type="checkbox" class="form-check-input" id="activo" />

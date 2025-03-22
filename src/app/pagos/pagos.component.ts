@@ -56,7 +56,7 @@ export class PagosComponent implements OnInit {
   showEditForm(id: number): void {
     this.pagoId = id;
     this.service.getById(id).subscribe(pago => {
-      this.form = { ...pago };
+      this.form = { ...pago.data };
       this.formVisible = true;
       this.isEditing = true;
     });

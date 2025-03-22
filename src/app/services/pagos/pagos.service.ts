@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Pago, PagoResponse } from '../../interfaces/pago';
-
+import { Global } from '../../interfaces/global';
 @Injectable({
   providedIn: 'root'
 })
@@ -16,8 +16,8 @@ export class PagosService {
     return this.http.get<PagoResponse>(this.apiUrl);
   }
 
-  getById(id: number): Observable<Pago> {
-    return this.http.get<Pago>(`${this.apiUrl}/${id}`);
+  getById(id: number): Observable<Global> {
+    return this.http.get<Global>(`${this.apiUrl}/${id}`);
   }
 
   create(data: Partial<Pago>): Observable<Pago> {

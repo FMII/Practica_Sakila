@@ -24,8 +24,12 @@
             <textarea [(ngModel)]="peliculaForm.description" name="description" rows="3" class="form-control"></textarea>
           </div>
           <div class="mb-3 col-md-3">
-            <label>Idioma (ID)</label>
-            <input [(ngModel)]="peliculaForm.language_id" name="language_id" type="number" class="form-control" required />
+            <label>Idioma</label>
+            <select [(ngModel)]="peliculaForm.language_id" name="language_id" class="form-select" required>
+              <option *ngFor="let lang of languages" [value]="lang.language_id">
+                {{ lang.name }}
+              </option>
+            </select>
           </div>
           <div class="mb-3 col-md-3">
             <label>Duración renta (días)</label>

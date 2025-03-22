@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Cliente, ClienteResponse } from '../../interfaces/cliente';
-
+import { Global } from '../../interfaces/global';
 @Injectable({
   providedIn: 'root'
 })
@@ -17,8 +17,8 @@ export class ClienteService {
   }
 
   // Obtener un cliente por ID
-  getClientById(id: number): Observable<Cliente> {
-    return this.http.get<Cliente>(`${this.apiUrl}/${id}`);
+  getClientById(id: number): Observable<Global> {
+    return this.http.get<Global>(`${this.apiUrl}/${id}`);
   }
 
   // Crear cliente

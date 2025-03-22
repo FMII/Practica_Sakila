@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Renta, RentaResponse } from '../../interfaces/renta';
-
+import { Global } from '../../interfaces/global';
 @Injectable({
   providedIn: 'root'
 })
@@ -15,8 +15,8 @@ export class RentasService {
     return this.http.get<RentaResponse>(this.apiUrl);
   }
 
-  getById(id: number): Observable<Renta> {
-    return this.http.get<Renta>(`${this.apiUrl}/${id}`);
+  getById(id: number): Observable<Global> {
+    return this.http.get<Global>(`${this.apiUrl}/${id}`);
   }
 
   create(data: Partial<Renta>): Observable<Renta> {
