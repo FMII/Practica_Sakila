@@ -71,30 +71,74 @@ export class PeliculaCategoriaComponent implements OnInit {
     this.form = { film_id: 0, category_id: 0 };
   }
 
-  showEditForm(rel: PeliculaCategoria): void {
-    this.selectedIds = { film_id: rel.film_id, category_id: rel.category_id };
-    this.form = {
-      film_id: rel.film_id,
-      category_id: rel.category_id
-    };
-    this.formVisible = true;
-    this.isEditing = true;
-  }
+  loading = false;
+  errorMessage = '';
 
-  save(): void {
+showEditForm(rel: PeliculaCategoria): void {
+  this.selectedIds = { 
+    film_id: rel.film_id, 
+    category_id: rel.category_id 
+  };
+  this.form = {
+    film_id: rel.film_id,
+    category_id: rel.category_id
+  };
+  this.formVisible = true;
+  this.isEditing = true;
+}
+
+save(): void {
+  const filmId = Number(this.form.film_id);
+  const categoryId = Number(this.form.category_id);
+
+  if (this.isEditing) {
+    this.loading = true;
+    this.errorMessage = '';
+    
     const { film_id, category_id } = this.selectedIds;
-    if (this.isEditing) {
-      this.service.update(film_id, category_id, this.form).subscribe(() => {
+    
+    const updateData = {
+      new_film_id: filmId,
+      new_category_id: categoryId
+    };
+
+    this.service.update(
+      Number(film_id), 
+      Number(category_id), 
+      updateData
+    ).subscribe({
+      next: () => {
+        this.loading = false;
         this.cancel();
         this.loadRelaciones();
-      });
-    } else {
-      this.service.create(this.form).subscribe(() => {
+      },
+      error: (err) => {
+        this.loading = false;
+        this.errorMessage = 'Error al actualizar la relación';
+        console.error('Error:', err);
+      }
+    });
+  } else {
+    const createData = {
+      film_id: filmId,
+      category_id: categoryId
+    };
+    
+    this.loading = true;
+    this.service.create(createData).subscribe({
+      next: () => {
+        this.loading = false;
         this.cancel();
         this.loadRelaciones();
-      });
-    }
+      },
+      error: (err) => {
+        this.loading = false;
+        this.errorMessage = 'Error al crear la relación';
+        console.error('Error:', err);
+      }
+    });
   }
+}
 
   delete(film_id: number, category_id: number): void {
     if (confirm('¿Deseas eliminar esta relación?')) {

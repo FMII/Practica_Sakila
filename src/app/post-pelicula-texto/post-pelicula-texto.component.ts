@@ -23,6 +23,7 @@ export class PostPeliculaTextoComponent {
       Validators.minLength(10)
     ])
   });
+  errorMessage: string | null = null;
 
   constructor(private postPeliculaTextoService: PostPeliculaTextoService) {}
 
@@ -37,15 +38,20 @@ export class PostPeliculaTextoComponent {
       this.postPeliculaTextoService.postPeliculaTexto(peliculaTexto).subscribe({
         next: (response) => {
           console.log('Película texto creada:', response);
-          // Cierra el modal y reinicia el formulario
           this.peliculaTextoForm.reset();
-          // Aquí puedes agregar un mensaje de éxito si lo deseas
+          this.errorMessage = null; 
         },
         error: (error) => {
           console.error('Error al crear la película texto:', error);
           if (error.status === 400) {
             console.error('Detalles del error:', error.error);
-            // Aquí puedes mostrar un mensaje de error a nivel de la interfaz de usuario
+            if (error.error && error.error.message === 'ID ya registrado') {
+              this.errorMessage = 'El ID ya está registrado. Por favor, usa otro.';
+            } else {
+              this.errorMessage = 'Ocurrió un error al crear la película texto.';
+            }
+          } else {
+            this.errorMessage = 'ID ya registrado';
           }
         },
       });

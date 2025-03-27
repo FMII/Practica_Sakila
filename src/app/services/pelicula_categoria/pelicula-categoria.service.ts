@@ -23,8 +23,8 @@ export class PeliculaCategoriaService {
     return this.http.post<PeliculaCategoria>(this.apiUrl, data);
   }
 
-  update(film_id: number, category_id: number, data: Partial<PeliculaCategoria>): Observable<PeliculaCategoria> {
-    return this.http.put<PeliculaCategoria>(`${this.apiUrl}/${film_id}/${category_id}`, data);
+  update(film_id: number, category_id: number, data: { new_film_id: number, new_category_id: number }): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${film_id}/${category_id}`, data);
   }
 
   delete(film_id: number, category_id: number): Observable<any> {
