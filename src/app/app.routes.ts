@@ -11,6 +11,12 @@ import { PeliculaActorComponent } from './pelicula-actor/pelicula-actor.componen
 import { PeliculaCategoriaComponent } from './pelicula-categoria/pelicula-categoria.component';
 import { PeliculaTextoComponent } from './pelicula-texto/pelicula-texto.component';
 import { InventarioComponent } from './inventario/inventario.component';
+import { LenguajesComponent } from './lenguajes/lenguajes.component';
+import { DireccionesComponent } from './direcciones/direcciones.component';
+import { CategoriasComponent } from './categorias/categorias.component';
+import { TiendasComponent } from './tiendas/tiendas.component';
+import { PaisesComponent } from './paises/paises.component';
+import { CiudadesComponent } from './ciudades/ciudades.component';
 
 export const routes: Routes = [
   { path: 'crud/actors', component: ActorComponent },
@@ -23,6 +29,12 @@ export const routes: Routes = [
   { path: 'crud/payments', component: PagosComponent },
   { path: 'crud/rentals', component: RentasComponent },
   { path: 'crud/staff', component: PersonalComponent },
+  { path: 'crud/language', component: LenguajesComponent },
+  { path: 'crud/adress', component: DireccionesComponent },
+  { path: 'crud/category', component: CategoriasComponent },
+  { path: 'crud/store', component: TiendasComponent },
+  { path: 'crud/country', component: PaisesComponent },
+  { path: 'crud/city', component: CiudadesComponent },
 
   // Ruta por defecto
   { path: '', redirectTo: 'crud/films', pathMatch: 'full' },

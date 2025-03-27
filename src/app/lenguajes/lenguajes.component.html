@@ -1,0 +1,22 @@
+<div style="margin-bottom: 25px;"><h1>Lenguajes</h1></div>
+<div *ngIf="!formVisible" class="table-responsive actor-table-scroll shadow-sm rounded">
+    <table class="table table-hover table-bordered">
+        <thead class="table-primary text-center sticky-header">
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Última Actualización</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let lenguaje of lenguajes | paginate: { itemsPerPage: itemsPerPage, currentPage: page }">
+                <td class="text-center">{{ lenguaje.language_id }}</td>
+                <td>{{ lenguaje.name }}</td>
+                <td>{{ lenguaje.last_update | date:'dd/MM/yyyy HH:mm:ss' }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<pagination-controls *ngIf="!formVisible" (pageChange)="page = $event" class="d-flex justify-content-center mt-3">
+</pagination-controls>

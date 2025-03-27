@@ -1,0 +1,32 @@
+<div style="margin-bottom: 20px;"><h1>Direcciones</h1></div>
+<div *ngIf="!formVisible" class="table-responsive actor-table-scroll shadow-sm rounded">
+    <table class="table table-hover table-bordered">
+      <thead class="table-primary text-center sticky-header">
+        <tr>
+          <th>ID</th>
+          <th>Dirección</th>
+          <th>Distrito</th>
+          <th>Código Postal</th>
+          <th>Teléfono</th>
+          <th>Última Actualización</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let direccion of direcciones | paginate: { itemsPerPage: itemsPerPage, currentPage: page }">
+          <td class="text-center">{{ direccion.address_id }}</td>
+          <td>{{ direccion.address }} {{ direccion.address2 ? direccion.address2 : '' }}</td>
+          <td>{{ direccion.district }}</td>
+          <td>{{ direccion.postal_code }}</td>
+          <td>{{ direccion.phone }}</td>
+          <td>{{ direccion.last_update | date:'dd/MM/yyyy HH:mm:ss' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <pagination-controls
+    *ngIf="!formVisible"
+    (pageChange)="page = $event"
+    class="d-flex justify-content-center mt-3">
+  </pagination-controls>
+  
