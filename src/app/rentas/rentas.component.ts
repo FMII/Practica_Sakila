@@ -4,11 +4,12 @@ import { RentasService } from '../services/rentas/rentas.service';
 import { NgFor, NgIf ,DatePipe} from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { PostRentalComponent } from '../post-rentas/post-rentas.component';
 
 @Component({
   selector: 'app-rentas',
   standalone: true,
-  imports: [NgFor, NgIf, FormsModule, NgxPaginationModule,DatePipe],
+  imports: [NgFor, NgIf, FormsModule, NgxPaginationModule,DatePipe, PostRentalComponent],
   templateUrl: './rentas.component.html',
   styleUrl: './rentas.component.css'
 })

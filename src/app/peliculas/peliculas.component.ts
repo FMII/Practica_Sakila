@@ -6,11 +6,13 @@ import { Pelicula } from '../interfaces/pelicula';
 import { PeliculaService } from '../services/pelicula/pelicula.service';
 import { LenguajeService } from '../services/lenguaje/lenguaje.service';
 import { Lenguaje } from '../interfaces/lenguaje';
+import { createPelicula } from '../interfaces/postPelicula';
+import { PostPeliculaComponent } from '../post-pelicula/post-pelicula.component';
 
 @Component({
   selector: 'app-peliculas',
   standalone: true,
-  imports: [NgFor, NgIf, FormsModule, NgxPaginationModule],
+  imports: [NgFor, NgIf, FormsModule, NgxPaginationModule, PostPeliculaComponent],
   templateUrl: './peliculas.component.html',
   styleUrl: './peliculas.component.css'
 })
@@ -54,7 +56,6 @@ export class PeliculasComponent implements OnInit {
     });
   }
   
-
   getPeliculas(): void {
     this.peliculaService.getFilms().subscribe(res => {
       this.peliculas = res.data;
@@ -87,13 +88,22 @@ export class PeliculasComponent implements OnInit {
   }
 
   savePelicula(): void {
+    const peliculaData: createPelicula = {
+      title: this.peliculaForm.title!,
+      language_id: this.peliculaForm.language_id!,
+      rental_duration: this.peliculaForm.rental_duration!,
+      rental_rate: this.peliculaForm.rental_rate!,
+      replacement_cost: this.peliculaForm.replacement_cost!,
+      special_features: this.peliculaForm.special_features!
+    };
+  
     if (this.isEditing && this.peliculaForm.film_id) {
-      this.peliculaService.updateFilm(this.peliculaForm.film_id, this.peliculaForm).subscribe(() => {
+      this.peliculaService.updateFilm(this.peliculaForm.film_id, peliculaData).subscribe(() => {
         this.cancelForm();
         this.getPeliculas();
       });
     } else {
-      this.peliculaService.createFilm(this.peliculaForm).subscribe(() => {
+      this.peliculaService.createFilm(peliculaData).subscribe(() => {
         this.cancelForm();
         this.getPeliculas();
       });

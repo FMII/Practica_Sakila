@@ -9,11 +9,12 @@ import { Pelicula } from '../interfaces/pelicula';
 import { Category } from '../interfaces/category';
 import { PeliculaService } from '../services/pelicula/pelicula.service';
 import { CategoryService } from '../services/category/category.service';
+import { PostPeliculaCategoriaComponent } from '../post-pelicula-categoria/post-pelicula-categoria.component';
 
 @Component({
   selector: 'app-pelicula-categoria',
   standalone: true,
-  imports: [NgFor, NgIf, FormsModule, NgxPaginationModule],
+  imports: [NgFor, NgIf, FormsModule, NgxPaginationModule, PostPeliculaCategoriaComponent],
   templateUrl: './pelicula-categoria.component.html',
   styleUrl: './pelicula-categoria.component.css'
 })

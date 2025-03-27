@@ -1,0 +1,49 @@
+<!-- Botón para abrir el modal -->
+<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalPago">
+  ➕ <b>Registrar pago</b>
+</button>
+<!-- Modal -->
+<div class="modal fade" id="modalPago" tabindex="-1" aria-labelledby="modalPagoLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalPagoLabel">Registrar Nuevo Pago</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+
+      <div class="modal-body">
+        <form [formGroup]="pagoForm" (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label for="customer_id" class="form-label">ID del Cliente</label>
+            <input id="customer_id" type="number" class="form-control" formControlName="customer_id" />
+          </div>
+
+          <div class="mb-3">
+            <label for="staff_id" class="form-label">ID del Empleado</label>
+            <input id="staff_id" type="number" class="form-control" formControlName="staff_id" />
+          </div>
+
+          <div class="mb-3">
+            <label for="rental_id" class="form-label">ID del Alquiler</label>
+            <input id="rental_id" type="number" class="form-control" formControlName="rental_id" />
+          </div>
+
+          <div class="mb-3">
+            <label for="amount" class="form-label">Monto</label>
+            <input id="amount" type="number" step="0.01" class="form-control" formControlName="amount" />
+          </div>
+
+          <div class="mb-3">
+            <label for="payment_date" class="form-label">Fecha de Pago</label>
+            <input id="payment_date" type="datetime-local" class="form-control" formControlName="payment_date" />
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-success" [disabled]="pagoForm.invalid">Registrar Pago</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,89 @@
+<div class="container">
+
+  <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#clienteModal">
+    ➕ <b>Crear cliente nuevo</b>
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="clienteModal" tabindex="-1" aria-labelledby="clienteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="clienteModalLabel">Crear Cliente</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <!-- Formulario dentro del modal -->
+          <form [formGroup]="clienteForm" (ngSubmit)="onSubmit()">
+            <div class="row g-3">
+              <div class="col-12">
+                <label for="store_id" class="form-label">ID de la Tienda</label>
+                <input type="number" id="store_id" formControlName="store_id" class="form-control" placeholder="Ej. 1"
+                  [class.is-invalid]="clienteForm.get('store_id')?.invalid && clienteForm.get('store_id')?.touched" />
+                <div *ngIf="clienteForm.get('store_id')?.invalid && clienteForm.get('store_id')?.touched"
+                  class="invalid-feedback">
+                  Este campo es obligatorio.
+                </div>
+              </div>
+
+              <div class="col-12">
+                <label for="first_name" class="form-label">Nombre</label>
+                <input type="text" id="first_name" formControlName="first_name" class="form-control"
+                  placeholder="Ej. Juan"
+                  [class.is-invalid]="clienteForm.get('first_name')?.invalid && clienteForm.get('first_name')?.touched" />
+                <div *ngIf="clienteForm.get('first_name')?.invalid && clienteForm.get('first_name')?.touched"
+                  class="invalid-feedback">
+                  Este campo es obligatorio.
+                </div>
+              </div>
+
+              <div class="col-12">
+                <label for="last_name" class="form-label">Apellido</label>
+                <input type="text" id="last_name" formControlName="last_name" class="form-control"
+                  placeholder="Ej. Pérez"
+                  [class.is-invalid]="clienteForm.get('last_name')?.invalid && clienteForm.get('last_name')?.touched" />
+                <div *ngIf="clienteForm.get('last_name')?.invalid && clienteForm.get('last_name')?.touched"
+                  class="invalid-feedback">
+                  Este campo es obligatorio.
+                </div>
+              </div>
+
+              <div class="col-12">
+                <label for="email" class="form-label">Correo Electrónico</label>
+                <input type="email" id="email" formControlName="email" class="form-control"
+                  placeholder="Ej. correo@dominio.com"
+                  [class.is-invalid]="clienteForm.get('email')?.invalid && clienteForm.get('email')?.touched" />
+                <div *ngIf="clienteForm.get('email')?.invalid && clienteForm.get('email')?.touched"
+                  class="invalid-feedback">
+                  Ingresa un correo válido.
+                </div>
+              </div>
+
+              <div class="col-12">
+                <label for="address_id" class="form-label">ID de la Dirección</label>
+                <input type="number" id="address_id" formControlName="address_id" class="form-control"
+                  placeholder="Ej. 101"
+                  [class.is-invalid]="clienteForm.get('address_id')?.invalid && clienteForm.get('address_id')?.touched" />
+                <div *ngIf="clienteForm.get('address_id')?.invalid && clienteForm.get('address_id')?.touched"
+                  class="invalid-feedback">
+                  Este campo es obligatorio.
+                </div>
+              </div>
+            </div>
+
+            <!-- Botones dentro del modal -->
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-success" [disabled]="clienteForm.invalid">
+                Guardar
+              </button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                Cancelar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

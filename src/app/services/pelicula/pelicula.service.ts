@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Pelicula, PeliculaResponse } from '../../interfaces/pelicula';
+import { Pelicula, PeliculaResponse, createPelicula } from '../../interfaces/pelicula';
 import { Global } from '../../interfaces/global';
 @Injectable({
   providedIn: 'root'
@@ -19,8 +19,8 @@ export class PeliculaService {
     return this.http.get<Global>(`${this.apiUrl}/${id}`);
   }
 
-  createFilm(film: Partial<Pelicula>): Observable<Pelicula> {
-    return this.http.post<Pelicula>(this.apiUrl, film);
+  createFilm(film: Partial<createPelicula>): Observable<createPelicula> {
+    return this.http.post<createPelicula>(this.apiUrl, film);
   }
 
   updateFilm(id: number, film: Partial<Pelicula>): Observable<Pelicula> {

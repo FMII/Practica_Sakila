@@ -1,76 +1,70 @@
 <div class="container-fluid actor-table-container">
-    <h2 class="mt-3 mb-4">Rentas</h2>
-  
-    <div class="mb-3" *ngIf="!formVisible">
-      <button class="btn btn-success" (click)="showCreateForm()">➕ Nueva Renta</button>
-    </div>
-  
-    <div *ngIf="formVisible" class="mb-4 card p-3 shadow-sm">
-      <h5>{{ isEditing ? 'Editar Renta' : 'Nueva Renta' }}</h5>
-      <form (ngSubmit)="save()">
-        <div class="row">
-          <div class="mb-3 col-md-4">
-            <label>ID Inventario</label>
-            <input [(ngModel)]="form.inventory_id" name="inventory_id" type="number" class="form-control" required />
-          </div>
-          <div class="mb-3 col-md-4">
-            <label>ID Cliente</label>
-            <input [(ngModel)]="form.customer_id" name="customer_id" type="number" class="form-control" required />
-          </div>
-          <div class="mb-3 col-md-4">
-            <label>ID Empleado</label>
-            <input [(ngModel)]="form.staff_id" name="staff_id" type="number" class="form-control" required />
-          </div>
+  <h2 class="mt-3 mb-4">Rentas</h2>
+  <div style="margin-bottom: 15px;"><app-post-rental></app-post-rental></div>
+
+  <div *ngIf="formVisible" class="mb-4 card p-3 shadow-sm">
+    <h5>{{ isEditing ? 'Editar Renta' : 'Nueva Renta' }}</h5>
+    <form (ngSubmit)="save()">
+      <div class="row">
+        <div class="mb-3 col-md-4">
+          <label>ID Inventario</label>
+          <input [(ngModel)]="form.inventory_id" name="inventory_id" type="number" class="form-control" required />
         </div>
-        <div class="row">
-          <div class="mb-3 col-md-6">
-            <label>Fecha de Renta</label>
-            <input [(ngModel)]="form.rental_date" name="rental_date" type="datetime-local" class="form-control" required />
-          </div>
-          <div class="mb-3 col-md-6">
-            <label>Fecha de Devolución</label>
-            <input [(ngModel)]="form.return_date" name="return_date" type="datetime-local" class="form-control" />
-          </div>
+        <div class="mb-3 col-md-4">
+          <label>ID Cliente</label>
+          <input [(ngModel)]="form.customer_id" name="customer_id" type="number" class="form-control" required />
         </div>
-        <div class="d-flex gap-2">
-          <button type="submit" class="btn btn-primary">{{ isEditing ? 'Actualizar' : 'Crear' }}</button>
-          <button type="button" class="btn btn-secondary" (click)="cancel()">Cancelar</button>
+        <div class="mb-3 col-md-4">
+          <label>ID Empleado</label>
+          <input [(ngModel)]="form.staff_id" name="staff_id" type="number" class="form-control" required />
         </div>
-      </form>
-    </div>
-  
-    <div *ngIf="!formVisible" class="table-responsive actor-table-scroll shadow-sm rounded">
-      <table class="table table-hover table-bordered">
-        <thead class="table-primary text-center sticky-header">
-          <tr>
-            <th>ID</th>
-            <th>Cliente</th>
-            <th>Inventario</th>
-            <th>Fecha Renta</th>
-            <th>Fecha Devolución</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let renta of rentas | paginate: { itemsPerPage: itemsPerPage, currentPage: page }">
-            <td class="text-center">{{ renta.rental_id }}</td>
-            <td class="text-center">{{ renta.customer_id }}</td>
-            <td class="text-center">{{ renta.inventory_id }}</td>
-            <td>{{ renta.rental_date | date: 'short' }}</td>
-            <td>{{ renta.return_date | date: 'short' }}</td>
-            <td class="text-center">
-              <button class="btn btn-sm btn-warning me-2" (click)="showEditForm(renta.rental_id)">✏️</button>
-              <button class="btn btn-sm btn-danger" (click)="delete(renta.rental_id)">🗑️</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  
-    <pagination-controls
-      *ngIf="!formVisible"
-      (pageChange)="page = $event"
-      class="d-flex justify-content-center mt-3">
-    </pagination-controls>
+      </div>
+      <div class="row">
+        <div class="mb-3 col-md-6">
+          <label>Fecha de Renta</label>
+          <input [(ngModel)]="form.rental_date" name="rental_date" type="datetime-local" class="form-control"
+            required />
+        </div>
+        <div class="mb-3 col-md-6">
+          <label>Fecha de Devolución</label>
+          <input [(ngModel)]="form.return_date" name="return_date" type="datetime-local" class="form-control" />
+        </div>
+      </div>
+      <div class="d-flex gap-2">
+        <button type="submit" class="btn btn-primary">{{ isEditing ? 'Actualizar' : 'Crear' }}</button>
+        <button type="button" class="btn btn-secondary" (click)="cancel()">Cancelar</button>
+      </div>
+    </form>
   </div>
-  
+
+  <div *ngIf="!formVisible" class="table-responsive actor-table-scroll shadow-sm rounded">
+    <table class="table table-hover table-bordered">
+      <thead class="table-primary text-center sticky-header">
+        <tr>
+          <th>ID</th>
+          <th>Cliente</th>
+          <th>Inventario</th>
+          <th>Fecha Renta</th>
+          <th>Fecha Devolución</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let renta of rentas | paginate: { itemsPerPage: itemsPerPage, currentPage: page }">
+          <td class="text-center">{{ renta.rental_id }}</td>
+          <td class="text-center">{{ renta.customer_id }}</td>
+          <td class="text-center">{{ renta.inventory_id }}</td>
+          <td>{{ renta.rental_date | date: 'short' }}</td>
+          <td>{{ renta.return_date | date: 'short' }}</td>
+          <td class="text-center">
+            <button class="btn btn-sm btn-warning me-2" (click)="showEditForm(renta.rental_id)">✏️</button>
+            <button class="btn btn-sm btn-danger" (click)="delete(renta.rental_id)">🗑️</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <pagination-controls *ngIf="!formVisible" (pageChange)="page = $event" class="d-flex justify-content-center mt-3">
+  </pagination-controls>
+</div>

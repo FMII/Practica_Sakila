@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { Cliente } from '../interfaces/cliente';
 import { ClienteService } from '../services/cliente/cliente.service';
-import { DireccionService } from '../services/direccion.service';
+import { DireccionService } from '../services/direccion/direccion.service';
 import { TiendaService } from '../services/tienda/tienda.service';
 import { Tienda } from '../interfaces/tienda';
 import { Direccion } from '../interfaces/direccion';
 import { NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { PostClienteComponent } from '../post-cliente/post-cliente.component';
 
 @Component({
   selector: 'app-clientes',
   standalone: true,
-  imports: [NgFor, NgIf, FormsModule, NgxPaginationModule],
+  imports: [NgFor, NgIf, FormsModule, NgxPaginationModule, PostClienteComponent],
   templateUrl: './clientes.component.html',
   styleUrl: './clientes.component.css'
 })

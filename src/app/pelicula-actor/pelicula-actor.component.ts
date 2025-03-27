@@ -8,18 +8,19 @@ import { ActorService } from '../services/actor/actor.service';
 import { Actor } from '../interfaces/actor';
 import { PeliculaService } from '../services/pelicula/pelicula.service';
 import { Pelicula } from '../interfaces/pelicula';
+import { PostPeliculaActorComponent } from "../post-pelicula-actor/post-pelicula-actor.component";
 
 @Component({
   selector: 'app-pelicula-actor',
   standalone: true,
-  imports: [NgFor, NgIf, FormsModule, NgxPaginationModule],
+  imports: [NgFor, NgIf, FormsModule, NgxPaginationModule, PostPeliculaActorComponent],
   templateUrl: './pelicula-actor.component.html',
   styleUrl: './pelicula-actor.component.css'
 })
 export class PeliculaActorComponent implements OnInit {
   relaciones: PeliculaActor[] = [];
   actores: Actor[] = [];
-peliculas: Pelicula[] = [];
+  peliculas: Pelicula[] = [];
 
   page = 1;
   itemsPerPage = 10;
@@ -38,27 +39,27 @@ peliculas: Pelicula[] = [];
     private service: PeliculaActorService,
     private actorService: ActorService,
     private peliculaService: PeliculaService
-  ) {}
-  
+  ) { }
+
 
   ngOnInit(): void {
     this.loadRelaciones();
     this.loadActores();
     this.loadPeliculas();
   }
-  
+
   loadActores(): void {
     this.actorService.getActors().subscribe(res => {
       this.actores = res.data;
     });
   }
-  
+
   loadPeliculas(): void {
     this.peliculaService.getFilms().subscribe(res => {
       this.peliculas = res.data;
     });
   }
-  
+
 
   loadRelaciones(): void {
     this.service.getAll().subscribe(res => {
@@ -83,6 +84,10 @@ peliculas: Pelicula[] = [];
   }
 
   save(): void {
+    if (this.form.film_id) {
+      this.form.film_id = +this.form.film_id;
+    }
+  
     if (this.isEditing) {
       const { actor_id, film_id } = this.selectedIds;
       this.service.update(actor_id, film_id, this.form).subscribe(() => {

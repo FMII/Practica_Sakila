@@ -6,12 +6,13 @@ import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Pelicula } from '../interfaces/pelicula'; 
 import { PeliculaService } from '../services/pelicula/pelicula.service';
+import { PostPeliculaTextoComponent } from '../post-pelicula-texto/post-pelicula-texto.component';
 
 
 @Component({
   selector: 'app-pelicula-texto',
   standalone: true,
-  imports: [NgFor, NgIf, FormsModule, NgxPaginationModule],
+  imports: [NgFor, NgIf, FormsModule, NgxPaginationModule, PostPeliculaTextoComponent],
   templateUrl: './pelicula-texto.component.html',
   styleUrl: './pelicula-texto.component.css'
 })

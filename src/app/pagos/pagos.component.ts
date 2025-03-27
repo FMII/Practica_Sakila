@@ -4,11 +4,12 @@ import { PagosService } from '../services/pagos/pagos.service';
 import { NgFor, NgIf ,DatePipe} from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { PostPagoComponent } from '../post-pagos/post-pagos.component';
 
 @Component({
   selector: 'app-pagos',
   standalone: true,
-  imports: [NgFor, NgIf, FormsModule, NgxPaginationModule,DatePipe],
+  imports: [NgFor, NgIf, FormsModule, NgxPaginationModule,DatePipe, PostPagoComponent],
   templateUrl: './pagos.component.html',
   styleUrl: './pagos.component.css'
 })
