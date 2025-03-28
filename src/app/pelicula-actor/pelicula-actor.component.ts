@@ -29,8 +29,8 @@ export class PeliculaActorComponent implements OnInit {
   isEditing = false;
 
   form: Partial<PeliculaActor> = {
-    actor_id: 0,
-    film_id: 0
+    film_id: 0,
+    actor_id: 0
   };
 
   selectedIds = { actor_id: 0, film_id: 0 };
@@ -90,7 +90,7 @@ export class PeliculaActorComponent implements OnInit {
   
     if (this.isEditing) {
       const { actor_id, film_id } = this.selectedIds;
-      this.service.update(actor_id, film_id, this.form).subscribe(() => {
+      this.service.update(actor_id,film_id,  this.form).subscribe(() => {
         this.cancel();
         this.loadRelaciones();
       });
