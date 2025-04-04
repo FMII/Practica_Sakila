@@ -1,14 +1,2 @@
-<div style="height: 100vh; width: 100%; display: flex; flex-direction: column;">
-  <!-- Navbar fijo en la parte superior -->
-  <app-navbar style="position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;" />
 
-  <div style="display: flex; flex: 1;">
-    <!-- Sidebar fijo a la izquierda -->
-    <app-sidebar style="position: fixed; height: 100vh; width: 16rem; top: 0; left: 0;" />
-
-    <!-- Contenedor del contenido ajustado -->
-    <div style="margin-left: 16rem; padding: 1rem; flex: 1; overflow-y: auto; margin-top: 4rem;">
       <router-outlet></router-outlet>
-    </div>
-  </div>
-</div>

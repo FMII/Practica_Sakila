@@ -2,14 +2,15 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Login } from '../interfaces/login';
 import { LoginService } from '../services/login/login.service';
+import { Router } from '@angular/router';  // Importar Router
 import { NgClass, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, FormsModule, NgIf, NgClass],
+  imports: [ReactiveFormsModule, FormsModule, NgIf],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css',
+  styleUrls: ['./login.component.css'], // Corregir la propiedad aquí, debe ser styleUrls no styleUrl
 })
 export class LoginComponent {
   loginForm = new FormGroup({
@@ -17,17 +18,21 @@ export class LoginComponent {
     password: new FormControl('', [Validators.required]),
   });
 
-  constructor(private authService: LoginService) {}
+  errorMessage: string = ''; // Variable para manejar el mensaje de error
+
+  constructor(private authService: LoginService, private router: Router) {}
 
   onSubmit() {
     if (this.loginForm.valid) {
       const data: Login = this.loginForm.value as Login;
       this.authService.login(data).subscribe({
         next: (res) => {
-          console.log('Login exitoso', res);
-          // Guardar token, redirigir, etc.
+          // Redirigir a la página de verificación
+          this.router.navigate(['/auth/verify']);
         },
         error: (err) => {
+          // Asignar mensaje de error en caso de fallo en el login
+          this.errorMessage = 'Error en el inicio de sesión. Intenta de nuevo.';
           console.error('Error en login:', err);
         },
       });
