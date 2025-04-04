@@ -17,6 +17,9 @@ import { CategoriasComponent } from './categorias/categorias.component';
 import { TiendasComponent } from './tiendas/tiendas.component';
 import { PaisesComponent } from './paises/paises.component';
 import { CiudadesComponent } from './ciudades/ciudades.component';
+import { LoginComponent } from './login/login.component';
+import { VerificationCodeComponent } from './verification-code/verification-code.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 export const routes: Routes = [
   { path: 'crud/actors', component: ActorComponent },
@@ -34,11 +37,14 @@ export const routes: Routes = [
   { path: 'crud/category', component: CategoriasComponent },
   { path: 'crud/store', component: TiendasComponent },
   { path: 'crud/country', component: PaisesComponent },
-  { path: 'crud/city', component: CiudadesComponent },
-
+  { path: 'auth/login', component: LoginComponent },
+  { path: 'auth/verify', component: VerificationCodeComponent },
+  { path: 'auth/verify', component: VerificationCodeComponent },
+  { path: 'auth/reset-password', component: ResetPasswordComponent },
+  
   // Ruta por defecto
   { path: '', redirectTo: 'crud/films', pathMatch: 'full' },
 
   // Ruta para cualquier path no definido
-  { path: '**', redirectTo: 'crud/films' }
+  { path: '**', redirectTo: 'crud/films' },
 ];

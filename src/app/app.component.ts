@@ -13,11 +13,12 @@ import { PostPeliculaCategoriaComponent } from './post-pelicula-categoria/post-p
 import { PeliculasComponent } from "./peliculas/peliculas.component";
 import { ActorComponent } from "./actor/actor.component";
 import { PostPeliculaTextoComponent } from './post-pelicula-texto/post-pelicula-texto.component';
+import { LoginComponent } from './login/login.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, SidebarComponent, NavbarComponent, NgxPaginationModule, PostPeliculaComponent, ClientesComponent, PostClienteComponent, PostRentalComponent, PostPagoComponent, PostPeliculaActorComponent, PostPeliculaCategoriaComponent, PeliculasComponent, ActorComponent, PostPeliculaTextoComponent],
+  imports: [RouterOutlet, SidebarComponent, NavbarComponent, NgxPaginationModule, PostPeliculaComponent, ClientesComponent, PostClienteComponent, PostRentalComponent, PostPagoComponent, PostPeliculaActorComponent, PostPeliculaCategoriaComponent, PeliculasComponent, ActorComponent, PostPeliculaTextoComponent, LoginComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
