@@ -21,9 +21,11 @@ import { VerificationCodeComponent } from './verification-code/verification-code
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { DashComponent } from './dash/dash.component';
 
+import { authGuard } from './auth.guard';
+
 export const routes: Routes = [
   {
-    path: 'crud', component:DashComponent,
+    path: 'crud', component: DashComponent, canActivate: [authGuard],  // Protegemos esta ruta con authGuard
     children: [
       { path: 'actors', component: ActorComponent },
       { path: 'customers', component: ClientesComponent },
@@ -44,7 +46,7 @@ export const routes: Routes = [
     ]
   },
   {
-    path: 'auth', // Rutas de autenticación
+    path: 'auth', // Rutas de autenticación (sin protección)
     children: [
       { path: 'login', component: LoginComponent },
       { path: 'verify', component: VerificationCodeComponent },
