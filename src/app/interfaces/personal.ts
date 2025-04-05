@@ -10,6 +10,7 @@ export interface Personal {
     username: string;
     password: string;
     last_update: string;
+    roleId:number;
     address: Direccion;
     store_staff_store_idTostore: Tienda;
     store_store_manager_staff_idTostaff: Tienda;

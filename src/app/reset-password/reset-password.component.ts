@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angula
 import { NgClass, NgIf } from '@angular/common';
 import { ResetPasswordService } from '../services/reset-password/reset-password.service';
 import { ResetPassword } from '../interfaces/reset-password';
+import { Router } from '@angular/router';  // Importar Router
 
 @Component({
   selector: 'app-reset-password',
@@ -14,14 +15,14 @@ import { ResetPassword } from '../interfaces/reset-password';
 export class ResetPasswordComponent {
   resetForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
-    resetCode: new FormControl('', [Validators.required, Validators.pattern(/^\d{6}$/)]),
+    resetCode: new FormControl('', [Validators.required]),
     newPassword: new FormControl('', [Validators.required, Validators.minLength(4)])
   });
 
   message: string = '';
   submitted = false;
 
-  constructor(private resetService: ResetPasswordService) {}
+  constructor(private resetService: ResetPasswordService, private router: Router) {}
 
   onSubmit() {
     this.submitted = true;
@@ -31,8 +32,7 @@ export class ResetPasswordComponent {
 
       this.resetService.resetPassword(data).subscribe({
         next: (res) => {
-          this.message = '¡Contraseña restablecida con éxito!';
-          console.log(res);
+          this.router.navigate(['/auth/login']);
         },
         error: (err) => {
           this.message = 'Error al restablecer la contraseña';

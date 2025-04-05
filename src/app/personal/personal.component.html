@@ -1,90 +1,98 @@
 <div class="container-fluid actor-table-container">
-    <h2 class="mt-3 mb-4">Personal</h2>
-  
-    <div class="mb-3" *ngIf="!formVisible">
-      <button class="btn btn-success" (click)="showCreateForm()">➕ Nuevo Empleado</button>
-    </div>
-  
-    <div *ngIf="formVisible" class="mb-4 card p-3 shadow-sm">
-      <h5>{{ isEditing ? 'Editar Personal' : 'Nuevo Personal' }}</h5>
-      <form (ngSubmit)="save()">
-        <div class="row">
-          <div class="mb-3 col-md-4">
-            <label>Nombre</label>
-            <input [(ngModel)]="form.first_name" name="first_name" class="form-control" required />
-          </div>
-          <div class="mb-3 col-md-4">
-            <label>Apellido</label>
-            <input [(ngModel)]="form.last_name" name="last_name" class="form-control" required />
-          </div>
-          <div class="mb-3 col-md-4">
-            <label>Email</label>
-            <input [(ngModel)]="form.email" name="email" class="form-control" />
-          </div>
-          <div class="mb-3 col-md-4">
-            <label>Usuario</label>
-            <input [(ngModel)]="form.username" name="username" class="form-control" required />
-          </div>
-          <div class="mb-3 col-md-4">
-            <label>Contraseña</label>
-            <input [(ngModel)]="form.password" name="password" class="form-control" type="password" required />
-          </div>
-          <div class="mb-3 col-md-2">
-            <label>Store ID</label>
-            <input [(ngModel)]="form.store_id" name="store_id" type="number" class="form-control" />
-          </div>
-          <div class="mb-3 col-md-2">
-            <label>Dirección ID</label>
-            <input [(ngModel)]="form.address_id" name="address_id" type="number" class="form-control" />
-          </div>
-        </div>
-  
-        <div class="form-check form-switch mb-3">
-          <input class="form-check-input" type="checkbox" [(ngModel)]="form.active" name="active" />
-          <label class="form-check-label">Activo</label>
-        </div>
-  
-        <div class="d-flex gap-2">
-          <button type="submit" class="btn btn-primary">{{ isEditing ? 'Actualizar' : 'Crear' }}</button>
-          <button type="button" class="btn btn-secondary" (click)="cancel()">Cancelar</button>
-        </div>
-      </form>
-    </div>
-  
-    <div *ngIf="!formVisible" class="table-responsive actor-table-scroll shadow-sm rounded">
-      <table class="table table-hover table-bordered">
-        <thead class="table-primary text-center sticky-header">
-          <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Correo</th>
-            <th>Usuario</th>
-            <th>Tienda</th>
-            <th>Activo</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let p of personal | paginate: { itemsPerPage: itemsPerPage, currentPage: page }">
-            <td class="text-center">{{ p.staff_id }}</td>
-            <td>{{ p.first_name }} {{ p.last_name }}</td>
-            <td>{{ p.email }}</td>
-            <td>{{ p.username }}</td>
-            <td class="text-center">{{ p.store_id }}</td>
-            <td class="text-center">{{ p.active ? '✔️' : '❌' }}</td>
-            <td class="text-center">
-              <button class="btn btn-sm btn-warning me-2" (click)="showEditForm(p.staff_id)">✏️</button>
-              <button class="btn btn-sm btn-danger" (click)="delete(p.staff_id)">🗑️</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  
-    <pagination-controls
-      *ngIf="!formVisible"
-      (pageChange)="page = $event"
-      class="d-flex justify-content-center mt-3">
-    </pagination-controls>
+  <h2 class="mt-3 mb-4">Personal</h2>
+
+  <div class="mb-3" *ngIf="!formVisible && isAdmin">
+    <button class="btn btn-success" (click)="showCreateForm()">➕ Nuevo Empleado</button>
   </div>
-  
+
+  <div *ngIf="formVisible" class="mb-4 card p-3 shadow-sm">
+    <h5>{{ isEditing ? 'Editar Personal' : 'Nuevo Personal' }}</h5>
+    <form (ngSubmit)="save()">
+      <div class="row">
+        <div class="mb-3 col-md-4">
+          <label>Nombre</label>
+          <input [(ngModel)]="form.first_name" name="first_name" class="form-control" required />
+        </div>
+        <div class="mb-3 col-md-4">
+          <label>Apellido</label>
+          <input [(ngModel)]="form.last_name" name="last_name" class="form-control" required />
+        </div>
+        <div class="mb-3 col-md-4">
+          <label>Email</label>
+          <input [(ngModel)]="form.email" name="email" class="form-control" />
+        </div>
+        <div class="mb-3 col-md-4">
+          <label>Usuario</label>
+          <input [(ngModel)]="form.username" name="username" class="form-control" required />
+        </div>
+        <div class="mb-3 col-md-4">
+          <label>Contraseña</label>
+          <input [(ngModel)]="form.password" name="password" class="form-control" type="password" required />
+        </div>
+        <div class="mb-3 col-md-2">
+          <label>Store ID</label>
+          <input [(ngModel)]="form.store_id" name="store_id" type="number" class="form-control" />
+        </div>
+        <div class="mb-3 col-md-2">
+          <label>Dirección ID</label>
+          <input [(ngModel)]="form.address_id" name="address_id" type="number" class="form-control" />
+        </div>
+
+        <!-- Campo para seleccionar el Rol -->
+        <div class="mb-3 col-md-4">
+          <label>Rol</label>
+          <select [(ngModel)]="form.roleId" name="roleId" class="form-control" required>
+            <option value="" disabled selected>Selecciona un rol</option>
+            <option *ngFor="let role of roles?.data" [value]="role.id">{{ role.name }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-check form-switch mb-3">
+        <input class="form-check-input" type="checkbox" [(ngModel)]="form.active" name="active" />
+        <label class="form-check-label">Activo</label>
+      </div>
+
+      <div class="d-flex gap-2">
+        <button type="submit" class="btn btn-primary">{{ isEditing ? 'Actualizar' : 'Crear' }}</button>
+        <button type="button" class="btn btn-secondary" (click)="cancel()">Cancelar</button>
+      </div>
+    </form>
+  </div>
+
+  <div *ngIf="!formVisible" class="table-responsive actor-table-scroll shadow-sm rounded">
+    <table class="table table-hover table-bordered">
+      <thead class="table-primary text-center sticky-header">
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Correo</th>
+          <th>Usuario</th>
+          <th>Tienda</th>
+          <th>Activo</th>
+          <th *ngIf="isAdmin">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of personal | paginate: { itemsPerPage: itemsPerPage, currentPage: page }">
+          <td class="text-center">{{ p.staff_id }}</td>
+          <td>{{ p.first_name }} {{ p.last_name }}</td>
+          <td>{{ p.email }}</td>
+          <td>{{ p.username }}</td>
+          <td class="text-center">{{ p.store_id }}</td>
+          <td class="text-center">{{ p.active ? '✔️' : '❌' }}</td>
+          <td class="text-center" *ngIf="isAdmin">
+            <button class="btn btn-sm btn-warning me-2" (click)="showEditForm(p.staff_id)">✏️</button>
+            <button class="btn btn-sm btn-danger" (click)="delete(p.staff_id)">🗑️</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <pagination-controls
+    *ngIf="!formVisible"
+    (pageChange)="page = $event"
+    class="d-flex justify-content-center mt-3">
+  </pagination-controls>
+</div>

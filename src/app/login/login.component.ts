@@ -4,6 +4,7 @@ import { Login } from '../interfaces/login';
 import { LoginService } from '../services/login/login.service';
 import { Router } from '@angular/router';  // Importar Router
 import { NgClass, NgIf } from '@angular/common';
+import { PasswordResetCodeService } from '../services/password-reset-code/password-reset-code.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,7 @@ export class LoginComponent {
 
   errorMessage: string = ''; // Variable para manejar el mensaje de error
 
-  constructor(private authService: LoginService, private router: Router) {}
+  constructor(private authService: LoginService, private router: Router, private passwordResetCode : PasswordResetCodeService) {}
 
   onSubmit() {
     if (this.loginForm.valid) {
@@ -33,6 +34,23 @@ export class LoginComponent {
         error: (err) => {
           // Asignar mensaje de error en caso de fallo en el login
           this.errorMessage = 'Error en el inicio de sesión. Intenta de nuevo.';
+          console.error('Error en login:', err);
+        },
+      });
+    }
+  }
+
+  recuperarContrasena(){
+    if (this.loginForm.valid) {
+      const data: Login = this.loginForm.value as Login;
+      this.passwordResetCode.sendResetCode(data).subscribe({
+        next: (res) => {
+          // Redirigir a la página de verificación
+          this.router.navigate(['/auth/reset-password']);
+        },
+        error: (err) => {
+          // Asignar mensaje de error en caso de fallo en el login
+          this.errorMessage = 'Error en el solicitar cambio de contraseña.';
           console.error('Error en login:', err);
         },
       });

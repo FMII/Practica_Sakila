@@ -2,7 +2,7 @@
   <h2 class="mt-3 mb-4">Lista de Actores</h2>
 
   <!-- Botón para mostrar formulario -->
-  <div class="mb-3" *ngIf="!formVisible">
+  <div  class="mb-3" *ngIf="!formVisible && isAdmin">
     <button class="btn btn-success" (click)="showCreateForm()">➕ Nuevo Actor</button>
   </div>
 
@@ -35,7 +35,7 @@
           <th>ID</th>
           <th>Nombre</th>
           <th>Apellido</th>
-          <th>Acciones</th>
+          <th *ngIf="isAdmin" >Acciones</th>
         </tr>
       </thead>
       <tbody>
@@ -43,7 +43,7 @@
           <td class="text-center">{{ actor.actor_id }}</td>
           <td>{{ actor.first_name }}</td>
           <td>{{ actor.last_name }}</td>
-          <td class="text-center">
+          <td class="text-center" *ngIf="isAdmin">
             <button class="btn btn-sm btn-warning me-2" (click)="showEditForm(actor.actor_id)">✏️</button>
             <button class="btn btn-sm btn-danger" (click)="deleteActor(actor.actor_id)">🗑️</button>
           </td>

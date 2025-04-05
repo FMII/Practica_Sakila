@@ -1,6 +1,6 @@
 <div class="container-fluid actor-table-container">
   <h2 class="mt-3 mb-4">Películas_Texto</h2>
-  <div style="margin-bottom: 15px;"><app-post-pelicula-texto></app-post-pelicula-texto></div>
+  <div *ngIf="isAdmin"  style="margin-bottom: 15px;"><app-post-pelicula-texto></app-post-pelicula-texto></div>
   <div *ngIf="formVisible" class="mb-4 card p-3 shadow-sm">
     <h5>{{ isEditing ? 'Editar Película' : 'Nueva Película' }}</h5>
     <form (ngSubmit)="save()">
@@ -34,7 +34,7 @@
           <th>ID</th>
           <th>Título</th>
           <th>Descripción</th>
-          <th>Acciones</th>
+          <th *ngIf="isAdmin" >Acciones</th>
         </tr>
       </thead>
       <tbody>
@@ -42,7 +42,7 @@
           <td class="text-center">{{ texto.film_id }}</td>
           <td>{{ texto.title }}</td>
           <td>{{ texto.description }}</td>
-          <td class="text-center">
+          <td class="text-center"  *ngIf="isAdmin">
             <button class="btn btn-sm btn-warning me-2" (click)="showEditForm(texto)">✏️</button>
             <button class="btn btn-sm btn-danger" (click)="delete(texto.film_id)">🗑️</button>
           </td>

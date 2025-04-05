@@ -7,7 +7,7 @@ import { NgClass, NgIf } from '@angular/common';
 @Component({
   selector: 'app-password-reset-code',
   standalone: true,
-  imports: [ReactiveFormsModule, NgIf, NgClass],
+  imports: [ReactiveFormsModule, NgIf],
   templateUrl: './password-reset-code.component.html',
   styleUrl: './password-reset-code.component.css'
 })

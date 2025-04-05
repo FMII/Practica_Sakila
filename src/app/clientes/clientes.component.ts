@@ -54,6 +54,34 @@ export class ClientesComponent implements OnInit {
     this.getClientes();
     this.getDirecciones();
     this.getTiendas(); // 👈
+    this.getUserRole(); 
+  }
+
+  userRole: string | null = '';  // Variable para almacenar el rol del usuario
+  isAdmin: boolean = false;
+  isClient: boolean = false;
+  isGuest: boolean = false;
+
+  // Método para obtener el rol desde localStorage
+  getUserRole(): void {
+    const role = localStorage.getItem('role');  // Asegúrate de que el rol se guarda bajo la clave 'role'
+    if (role) {
+      this.userRole = role;
+      this.checkRole();
+    } else {
+      console.error('No se encontró el rol en localStorage.');
+    }
+  }
+
+  // Método para establecer los roles booleanos
+  checkRole(): void {
+    if (this.userRole === 'Administrador') {
+      this.isAdmin = true;
+    } else if (this.userRole === 'Cliente') {
+      this.isClient = true;
+    } else if (this.userRole === 'Invitado') {
+      this.isGuest = true;
+    }
   }
   
   
