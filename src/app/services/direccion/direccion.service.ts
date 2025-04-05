@@ -7,7 +7,7 @@ import { DireccionResponse } from '../../interfaces/direccion';
 })
 export class DireccionService {
 
-  private apiUrl = 'http://209.38.68.250/address';
+  private apiUrl = 'http://127.0.0.1:44221/address';
 
   constructor(private http: HttpClient) {}
 

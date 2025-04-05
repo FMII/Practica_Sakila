@@ -7,7 +7,7 @@ import { Ciudad } from '../../interfaces/ciudad';
   providedIn: 'root'
 })
 export class CiudadService {
-  private apiUrl = 'http://209.38.68.250/city';
+  private apiUrl = 'http://127.0.0.1:44221/city';
 
   constructor(private http: HttpClient) {}
 

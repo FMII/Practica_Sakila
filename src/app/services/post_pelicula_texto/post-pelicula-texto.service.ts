@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class PostPeliculaTextoService {
-  private apiUrl = 'http://209.38.68.250/film_text';
+  private apiUrl = 'http://127.0.0.1:44221/film_text';
   constructor(private http: HttpClient) { }
   postPeliculaTexto(data: PostPeliculaTexto): Observable<any> {
         return this.http.post<any>(this.apiUrl, data);

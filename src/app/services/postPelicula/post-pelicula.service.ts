@@ -6,7 +6,7 @@ import { createPelicula } from '../../interfaces/postPelicula';
   providedIn: 'root',
 })
 export class PostPeliculaService {
-  private apiUrl = 'http://209.38.68.250/film';
+  private apiUrl = 'http://127.0.0.1:44221/film';
 
   constructor(private http: HttpClient) {}
 

@@ -7,7 +7,7 @@ import { VerificationCode } from '../../interfaces/verification-code';
   providedIn: 'root'
 })
 export class VerificationCodeService {
-  private apiUrl = 'http://209.38.68.250/auth/verify'; // Ajusta si la ruta es diferente
+  private apiUrl = 'http://127.0.0.1:44221/auth/verify'; // Ajusta si la ruta es diferente
 
   constructor(private http: HttpClient) {}
 

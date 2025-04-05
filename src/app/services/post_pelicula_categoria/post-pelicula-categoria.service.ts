@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class PostPeliculaCategoriaService {
-  private apiUrl = 'http://209.38.68.250/film_category'
+  private apiUrl = 'http://127.0.0.1:44221/film_category'
 
   constructor(private http: HttpClient) { }
 

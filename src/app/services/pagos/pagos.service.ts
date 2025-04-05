@@ -8,7 +8,7 @@ import { Global } from '../../interfaces/global';
 })
 export class PagosService {
 
-  private apiUrl = 'http://209.38.68.250/payment';
+  private apiUrl = 'http://127.0.0.1:44221/payment';
 
   constructor(private http: HttpClient) { }
 

@@ -7,7 +7,7 @@ import { Global } from '../../interfaces/global';
   providedIn: 'root'
 })
 export class ClienteService {
-  private apiUrl = 'http://209.38.68.250/customer';
+  private apiUrl = 'http://127.0.0.1:44221/customer';
 
   constructor(private http: HttpClient) {}
 

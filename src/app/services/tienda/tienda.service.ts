@@ -7,7 +7,7 @@ import { Tienda } from '../../interfaces/tienda';
   providedIn: 'root'
 })
 export class TiendaService {
-  private apiUrl = 'http://209.38.68.250/store';
+  private apiUrl = 'http://127.0.0.1:44221/store';
 
   constructor(private http: HttpClient) {}
 

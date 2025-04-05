@@ -7,7 +7,7 @@ import { Pais } from '../../interfaces/pais';
   providedIn: 'root'
 })
 export class PaisService {
-  private apiUrl = 'http://209.38.68.250/country';
+  private apiUrl = 'http://127.0.0.1:44221/country';
 
   constructor(private http: HttpClient) {}
 

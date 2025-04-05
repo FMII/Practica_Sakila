@@ -7,7 +7,7 @@ import { PeliculaActor, PeliculaActorResponse } from '../../interfaces/pelicula-
   providedIn: 'root'
 })
 export class PeliculaActorService {
-  private apiUrl = 'http://209.38.68.250/film_actor';
+  private apiUrl = 'http://127.0.0.1:44221/film_actor';
 
   constructor(private http: HttpClient) {}
 

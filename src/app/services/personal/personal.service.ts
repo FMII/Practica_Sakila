@@ -8,7 +8,7 @@ import { Global } from '../../interfaces/global';
 })
 export class PersonalService {
 
-  private apiUrl = 'http://209.38.68.250/staff';
+  private apiUrl = 'http://127.0.0.1:44221/staff';
 
   constructor(private http: HttpClient) { }
 

@@ -7,7 +7,7 @@ import { Global } from '../../interfaces/global';
   providedIn: 'root'
 })
 export class InventarioService {
-  private apiUrl = 'http://209.38.68.250/inventory';
+  private apiUrl = 'http://127.0.0.1:44221/inventory';
 
   constructor(private http: HttpClient) {}
 

@@ -7,7 +7,7 @@ import { PasswordResetCode } from '../../interfaces/password-reset-code';
   providedIn: 'root'
 })
 export class PasswordResetCodeService {
-  private apiUrl = 'http://209.38.68.250/auth/password-reset';
+  private apiUrl = 'http://127.0.0.1:44221/auth/password-reset';
 
   constructor(private http: HttpClient) {}
 

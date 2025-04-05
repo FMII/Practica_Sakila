@@ -7,7 +7,7 @@ import { PeliculaTexto, PeliculaTextoResponse } from '../../interfaces/pelicula-
   providedIn: 'root'
 })
 export class PeliculaTextoService {
-  private apiUrl = 'http://209.38.68.250/film_text';
+  private apiUrl = 'http://127.0.0.1:44221/film_text';
 
   constructor(private http: HttpClient) {}
 
